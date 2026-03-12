@@ -1216,8 +1216,8 @@ async fn get_expected_inactive_devices(
     let inactive_devices: HashSet<u32> = sku
         .components
         .infiniband_devices
-        .iter()
-        .flat_map(|ib_dev| ib_dev.inactive_devices.iter().copied())
+        .into_iter()
+        .flat_map(|ib_dev| ib_dev.inactive_devices)
         .collect();
 
     Ok(Some(inactive_devices))
